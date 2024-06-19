@@ -1,0 +1,32 @@
+
+{% extends './base.html' %}
+{% block content %}
+
+
+ <h2>{{ username }}さんのログ一覧</h2>
+
+ <table  class='table table-striped table-hover'>
+    <tbody>
+    {% for log in user_logs %}
+        <tr>
+        <td>映画名: {{ log.movie.title }}</td>
+        <td>{{ log.text }}</td>
+        <td>投稿者：{{ log.user.username }}</td>
+        <td>投稿日：{{ log.watch_date }}</td>
+        <td>
+            <button onclick="location.href='{% url 'myapp:updatelog' log.id %}'">編集</button>
+            <button onclick="location.href='{% url 'myapp:deletelog' log.id %}'">削除</button>
+        </td>
+
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+
+
+ <p> ログアウトは
+ <a href="{% url 'myapp:Logout' %}">こちら</a>
+ </p>
+
+
+{% endblock %}
